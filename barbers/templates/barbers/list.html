@@ -8,16 +8,24 @@
       <th scope="col">Position</th>
       <th scope="col">Age</th>
       <th scope="col">Experience</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
     {% for barber in barbers %}
     <tr>
       <th scope="row">{{ barber.id }}</th>
-      <td>{{ barber.name }}</td>
+      <td>
+        <a href="/barbers/{{ barber.id }}"> {{ barber.name }} </a>
+      </td>
       <td>{{ barber.position }}</td>
       <td>{{ barber.birthdate }}</td>
       <td>{{ barber.experience }}</td>
+      <td>
+        <a href="/barbers/delete/{{ barber.id }}" class="btn btn-sm">
+          <i class="fa-solid fa-trash-can"></i
+        ></a>
+      </td>
     </tr>
     {% empty %}
     <tr>

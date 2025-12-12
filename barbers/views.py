@@ -8,36 +8,6 @@ from django.forms import ModelForm
 #         model = Barber
 #         fields = "__all__"
 
-barbers = [
-    {
-        "id": 1,
-        "name": "John Doe",
-        "position": "Senior Barber",
-        "rating": 4.5,
-        "phone": "+1-555-0101",
-        "experience": 10,
-        "birthdate": "1985-03-12",
-    },
-    {
-        "id": 2,
-        "name": "Jane Smith",
-        "position": "Junior Barber",
-        "rating": 4.0,
-        "phone": "+1-555-0102",
-        "experience": 3,
-        "birthdate": "1996-07-21",
-    },
-    {
-        "id": 3,
-        "name": "Mike Johnson",
-        "position": "Barber",
-        "rating": 4.2,
-        "phone": "+1-555-0103",
-        "experience": 5,
-        "birthdate": "1992-11-05",
-    },
-]
-
 def barber_list(request):
     # barbers = Barber.objects.all()
     return render(request, "barbers/list.html", {"barbers": barbers})
