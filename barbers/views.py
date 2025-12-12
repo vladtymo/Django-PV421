@@ -3,19 +3,21 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.forms import ModelForm
 
+from barbers.models import Barber
+
 # class BarberForm(ModelForm):
 #     class Meta:
 #         model = Barber
 #         fields = "__all__"
 
 def barber_list(request):
-    # barbers = Barber.objects.all()
+    barbers = Barber.objects.all()
     return render(request, "barbers/list.html", {"barbers": barbers})
 
 
 def barber_detail(request, pk):
-    #barber = get_object_or_404(Barber, pk=pk)
-    return render(request, "barbers/detail.html", {"barber": barbers[pk - 1]})
+    barber = get_object_or_404(Barber, pk=pk)
+    return render(request, "barbers/detail.html", {"barber": barber})
 
 
 # def barber_create(request):
@@ -41,9 +43,7 @@ def barber_detail(request, pk):
 #     return render(request, "barbers/form.html", {"form": form, "barber": barber})
 
 
-# def barber_delete(request, pk):
-#     barber = get_object_or_404(Barber, pk=pk)
-#     if request.method == "POST":
-#         barber.delete()
-#         return redirect(reverse("barber_list"))
-#     return render(request, "barbers/confirm_delete.html", {"barber": barber})
+def barber_delete(request, pk):
+    barber = get_object_or_404(Barber, pk=pk)
+    barber.delete()
+    return redirect('/barbers/list')
