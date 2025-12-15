@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.forms import ModelForm
 
+from barbers.forms import BarberForm
 from barbers.models import Barber
 
 # class BarberForm(ModelForm):
@@ -18,6 +19,16 @@ def barber_list(request):
 def barber_detail(request, pk):
     barber = get_object_or_404(Barber, pk=pk)
     return render(request, "barbers/detail.html", {"barber": barber})
+
+def barber_create(request):
+    if (request.method == "POST"):
+        form = BarberForm(request.POST)
+        if form.is_valid():
+            barber = form.save()
+            return redirect(reverse("barber_detail", args=[barber.pk]))
+    else:
+        form = BarberForm()
+    return render(request, "barbers/create.html", {"form": form})
 
 
 # def barber_create(request):

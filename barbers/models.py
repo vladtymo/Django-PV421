@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import RegexValidator, MinValueValidator, MaxValueValidator
 
 # Create your models here.
 class Barber(models.Model):
@@ -13,11 +14,11 @@ class Barber(models.Model):
     ]
 
     name = models.CharField(max_length=100)
-    experience = models.IntegerField()
+    experience = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(60)])
     birthdate = models.DateField()
     position = models.CharField(max_length=100, choices=POSITION_CHOICES)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    rating = models.FloatField()
+    rating = models.FloatField(default=0)
     phone = models.CharField(max_length=20)
 
     def __str__(self):

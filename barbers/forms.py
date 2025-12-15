@@ -1,0 +1,20 @@
+from django import forms
+from django.forms import ModelForm
+from django.core.validators import MinValueValidator, MaxValueValidator
+
+from barbers.models import Barber
+
+class BarberForm(ModelForm):
+    class Meta:
+        model = Barber
+        fields = ["name", "experience", "birthdate", "position", "gender", "phone"]
+        widgets = {
+            'birthdate': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            "position": forms.Select(attrs={'class': 'form-select'}),
+            "gender": forms.Select(attrs={'class': 'form-select'}),
+            "name": forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter barber name'}),
+            "experience": forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter years of experience'}),
+            "phone": forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter phone number', "type": "tel"}),
+        }
+    
+     
