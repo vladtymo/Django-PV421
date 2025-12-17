@@ -6,52 +6,43 @@ from django.forms import ModelForm
 from barbers.forms import BarberForm
 from barbers.models import Barber
 
-# class BarberForm(ModelForm):
-#     class Meta:
-#         model = Barber
-#         fields = "__all__"
-
 def barber_list(request):
     barbers = Barber.objects.all()
     return render(request, "barbers/list.html", {"barbers": barbers})
-
 
 def barber_detail(request, pk):
     barber = get_object_or_404(Barber, pk=pk)
     return render(request, "barbers/detail.html", {"barber": barber})
 
+# метод додавання нового барбера
 def barber_create(request):
+    # якщо запит є POST, тоді додаємо елемент в базу
     if (request.method == "POST"):
         form = BarberForm(request.POST)
         if form.is_valid():
             barber = form.save()
             return redirect(reverse("barber_detail", args=[barber.pk]))
     else:
+        # якщо запит не є POST, тоді показуємо порожню форму
         form = BarberForm()
     return render(request, "barbers/create.html", {"form": form})
 
+def barber_update(request, pk):
+    # шукаємо барбера за id
+    barber = get_object_or_404(Barber, pk=pk)
 
-# def barber_create(request):
-#     if request.method == "POST":
-#         form = BarberForm(request.POST)
-#         if form.is_valid():
-#             barber = form.save()
-#             return redirect(reverse("barber_detail", args=[barber.pk]))
-#     else:
-#         form = BarberForm()
-#     return render(request, "barbers/form.html", {"form": form})
+    if request.method == "POST":
+        # створюємо форму з даними з запиту та існуючого барбера
+        form = BarberForm(request.POST, instance=barber)
+        if form.is_valid():
+            # зберігаємо зміни в базу
+            barber = form.save()
+            return redirect(reverse("barber_detail", args=[barber.pk]))
+    else:
+        # створюємо форму з даними знайденого барбера
+        form = BarberForm(instance=barber)
 
-
-# def barber_update(request, pk):
-#     barber = get_object_or_404(Barber, pk=pk)
-#     if request.method == "POST":
-#         form = BarberForm(request.POST, instance=barber)
-#         if form.is_valid():
-#             barber = form.save()
-#             return redirect(reverse("barber_detail", args=[barber.pk]))
-#     else:
-#         form = BarberForm(instance=barber)
-#     return render(request, "barbers/form.html", {"form": form, "barber": barber})
+    return render(request, "barbers/edit.html", {"form": form})
 
 
 def barber_delete(request, pk):

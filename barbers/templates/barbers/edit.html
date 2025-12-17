@@ -1,6 +1,6 @@
 {% extends "layout.html" %} {% block content %}
 
-<h1 class="my-2">Create Barber</h1>
+<h1 class="my-2">Edit Barber</h1>
 
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %} {% if form.non_field_errors %}
@@ -16,7 +16,7 @@
   </div>
   {% endfor %}
   <div class="d-flex gap-2">
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-primary">Edit</button>
     <a href="javascript:history.back()" class="btn btn-secondary">Cancel</a>
   </div>
 </form>

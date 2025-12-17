@@ -24,9 +24,15 @@
       <td>{{ barber.birthdate }}</td>
       <td>{{ barber.experience }}</td>
       <td>
-        <a href="/barbers/delete/{{ barber.id }}" class="btn btn-sm">
-          <i class="fa-solid fa-trash-can"></i
-        ></a>
+        <a href="/barbers/edit/{{ barber.id }}" class="btn btn-sm text-primary">
+          <i class="fa-solid fa-pencil"></i>
+        </a>
+        <a
+          href="/barbers/delete/{{ barber.id }}"
+          class="btn btn-sm text-danger"
+        >
+          <i class="fa-solid fa-trash-can"></i>
+        </a>
       </td>
     </tr>
     {% empty %}
