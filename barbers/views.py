@@ -18,7 +18,7 @@ def barber_detail(request, pk):
 def barber_create(request):
     # якщо запит є POST, тоді додаємо елемент в базу
     if (request.method == "POST"):
-        form = BarberForm(request.POST)
+        form = BarberForm(request.POST, request.FILES)
         if form.is_valid():
             barber = form.save()
             return redirect(reverse("barber_detail", args=[barber.pk]))
@@ -33,7 +33,7 @@ def barber_update(request, pk):
 
     if request.method == "POST":
         # створюємо форму з даними з запиту та існуючого барбера
-        form = BarberForm(request.POST, instance=barber)
+        form = BarberForm(request.POST, request.FILES, instance=barber)
         if form.is_valid():
             # зберігаємо зміни в базу
             barber = form.save()

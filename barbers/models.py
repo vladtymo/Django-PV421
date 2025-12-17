@@ -14,6 +14,7 @@ class Barber(models.Model):
     ]
 
     name = models.CharField(max_length=100)
+    photo = models.ImageField(upload_to='barber_photos/', blank=True, null=True)
     experience = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(60)])
     birthdate = models.DateField()
     position = models.CharField(max_length=100, choices=POSITION_CHOICES)

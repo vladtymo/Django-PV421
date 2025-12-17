@@ -7,9 +7,10 @@ from barbers.models import Barber
 class BarberForm(ModelForm):
     class Meta:
         model = Barber
-        fields = ["name", "experience", "birthdate", "position", "gender", "phone"]
+        fields = ["name", "photo", "experience", "birthdate", "position", "gender", "phone"]
         widgets = {
             'birthdate': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            "photo": forms.ClearableFileInput(attrs={'class': 'form-control'}),
             "position": forms.Select(attrs={'class': 'form-select'}),
             "gender": forms.Select(attrs={'class': 'form-select'}),
             "name": forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter barber name'}),

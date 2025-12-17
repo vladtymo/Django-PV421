@@ -2,7 +2,7 @@
 <a class="btn btn-primary mt-3" href="/barbers/create">Create New Barber</a>
 
 <h1 class="my-2">Barber List</h1>
-<table class="table">
+<table id="barberTable" class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -15,10 +15,25 @@
   </thead>
   <tbody>
     {% for barber in barbers %}
-    <tr>
+    <tr class="align-middle">
       <th scope="row">{{ barber.id }}</th>
       <td>
         <a href="/barbers/{{ barber.id }}"> {{ barber.name }} </a>
+      </td>
+      <td>
+        {% if barber.photo %}
+        <img
+          style="height: 50px"
+          src="{{barber.photo.url}}"
+          alt="{{ barber.name }}"
+        />
+        {% else %}
+        <img
+          style="height: 50px"
+          src="https://img.freepik.com/premium-vector/vector-flat-man-avatar-no-face-with-hairstyle-beard_574806-4741.jpg"
+          alt="{{ barber.name }}"
+        />
+        {% endif %}
       </td>
       <td>{{ barber.position }}</td>
       <td>{{ barber.birthdate }}</td>
