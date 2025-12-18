@@ -1,9 +1,34 @@
 {% extends "layout.html" %} {% block content %}
 <h1 class="my-2">Barber Details</h1>
 <div class="row g-4">
-  <div class="col-md-4">
-    <div class="card">
-      <div class="card-body">
+  <div class="col-lg-4">
+    <div class="card h-100">
+      <div class="card-body text-center">
+        {% if barber.photo %}
+        <img
+          style="
+            height: 150px;
+            width: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+          "
+          src="{{barber.photo.url}}"
+          alt="{{ barber.name }}"
+          class="mb-3"
+        />
+        {% else %}
+        <img
+          style="
+            height: 150px;
+            width: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+          "
+          src="https://img.freepik.com/premium-vector/vector-flat-man-avatar-no-face-with-hairstyle-beard_574806-4741.jpg"
+          alt="{{ barber.name }}"
+          class="mb-3"
+        />
+        {% endif %}
         <h5 class="card-title">{{ barber.name }}</h5>
         <p class="card-text text-muted">{{ barber.position }}</p>
         <div class="d-flex align-items-center gap-2">
@@ -25,8 +50,8 @@
     </div>
   </div>
 
-  <div class="col-md-8">
-    <div class="card">
+  <div class="col-lg-8">
+    <div class="card h-100">
       <div class="card-header">About</div>
       <div class="card-body">
         <p class="mb-1"><strong>Name:</strong> {{ barber.name }}</p>
