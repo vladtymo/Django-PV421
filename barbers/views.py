@@ -5,9 +5,12 @@ from django.forms import ModelForm
 
 from barbers.forms import BarberForm
 from barbers.models import Barber
+from django.contrib import messages
 
 def barber_list(request):
     barbers = Barber.objects.all()
+    messages.success(request, f"Hello barbers list!")
+
     return render(request, "barbers/list.html", {"barbers": barbers})
 
 def barber_detail(request, pk):
@@ -21,6 +24,7 @@ def barber_create(request):
         form = BarberForm(request.POST, request.FILES)
         if form.is_valid():
             barber = form.save()
+            messages.success(request, f"Barber {barber.name} has been created successfully.")
             return redirect(reverse("barber_detail", args=[barber.pk]))
     else:
         # якщо запит не є POST, тоді показуємо порожню форму
