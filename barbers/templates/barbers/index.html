@@ -1,0 +1,48 @@
+{% extends "layout.html" %} {% block content %}
+
+<div class="container mt-5">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h1>Our Barbers</h1>
+      <p class="text-muted">Meet our experienced team</p>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    {% for barber in barbers %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm">
+        <img
+          src="{% if barber.photo %}{{ barber.photo.url }}{% else %}https://img.freepik.com/premium-vector/vector-flat-man-avatar-no-face-with-hairstyle-beard_574806-4741.jpg{% endif %}"
+          class="card-img-top"
+          alt="{{ barber.name }}"
+          style="height: 300px; object-fit: cover"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ barber.name }}
+            <a href="#" style="color: darkred">
+              <i class="fa-regular fa-star"></i>
+            </a>
+          </h5>
+          <p class="card-text text-muted mb-2">
+            <strong>Position:</strong> {{ barber.position }}
+          </p>
+          <p class="card-text mb-3">
+            <strong>Experience:</strong> {{ barber.experience }} years
+          </p>
+        </div>
+        <div class="card-footer bg-transparent border-top">
+          <a
+            href="{% url 'barber_detail' barber.pk %}"
+            class="btn btn-primary btn-sm w-100 mb-2"
+            >Details</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

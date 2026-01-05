@@ -9,9 +9,13 @@ from django.contrib import messages
 
 def barber_list(request):
     barbers = Barber.objects.all()
-    # messages.success(request, f"Hello barbers list!")
 
     return render(request, "barbers/list.html", {"barbers": barbers})
+
+def barber_index(request):
+    barbers = Barber.objects.all()
+
+    return render(request, "barbers/index.html", {"barbers": barbers})
 
 def barber_detail(request, pk):
     barber = get_object_or_404(Barber, pk=pk)

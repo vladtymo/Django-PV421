@@ -11,6 +11,10 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
+    <script
+      src="https://kit.fontawesome.com/665c3db5a0.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
@@ -31,15 +35,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="/barbers/list"
+              <a class="nav-link active" aria-current="page" href="/barbers"
                 >Barbers</a
               >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -49,10 +47,12 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Dropdown
+                Administration
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li>
+                  <a class="dropdown-item" href="/barbers/list">Barbers</a>
+                </li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
@@ -78,9 +78,9 @@
         </div>
       </div>
     </nav>
-    
+
     <div class="container">{% block content %} {% endblock %}</div>
-    
+
     {% include 'components/toast.html' %}
 
     <script
