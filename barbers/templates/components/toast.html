@@ -1,5 +1,4 @@
-{% if messages %} 
-{% for msg in messages %}
+{% if messages %} {% for msg in messages %}
 <div class="toast-container position-fixed top-0 end-0 p-3">
   <div
     class="toast align-items-center text-bg-{% if msg.tags == 'error' %}danger{% else %}{{ msg.tags }}{% endif %} border-0"
@@ -19,19 +18,15 @@
     </div>
   </div>
 </div>
-{% endfor %}
-
-{% block scripts %}
+{% endfor %} {% block scripts %}
 <script>
-    window.onload = () => {
+  window.onload = () => {
     const toast = document.getElementById("toast");
 
     if (toast) {
       const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toast);
       toastBootstrap.show();
     }
-};
+  };
 </script>
-{% endblock %}
-
-{% endif %} 
+{% endblock %} {% endif %}

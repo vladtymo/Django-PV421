@@ -9,7 +9,7 @@ from django.contrib import messages
 
 def barber_list(request):
     barbers = Barber.objects.all()
-    messages.success(request, f"Hello barbers list!")
+    # messages.success(request, f"Hello barbers list!")
 
     return render(request, "barbers/list.html", {"barbers": barbers})
 
@@ -24,7 +24,7 @@ def barber_create(request):
         form = BarberForm(request.POST, request.FILES)
         if form.is_valid():
             barber = form.save()
-            messages.success(request, f"Barber {barber.name} has been created successfully.")
+            messages.success(request, f"Barber {barber.name} has been created successfully")
             return redirect(reverse("barber_detail", args=[barber.pk]))
     else:
         # якщо запит не є POST, тоді показуємо порожню форму
@@ -41,6 +41,7 @@ def barber_update(request, pk):
         if form.is_valid():
             # зберігаємо зміни в базу
             barber = form.save()
+            messages.success(request, f"Barber {barber.name} has been updated successfully")
             return redirect(reverse("barber_detail", args=[barber.pk]))
     else:
         # створюємо форму з даними знайденого барбера
@@ -52,4 +53,5 @@ def barber_update(request, pk):
 def barber_delete(request, pk):
     barber = get_object_or_404(Barber, pk=pk)
     barber.delete()
+    messages.error(request, f"Barber {barber.name} has been deleted successfully")
     return redirect('/barbers/list')
