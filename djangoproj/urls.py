@@ -7,6 +7,7 @@ from djangoproj import settings
 urlpatterns = [
     path('', include('home.urls')),
     path('admin/', admin.site.urls),
+    path('favorites/', include('favorites.urls')),
     path('barbers/', include('barbers.urls'))
 ]
 

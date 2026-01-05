@@ -7,6 +7,8 @@ from barbers.forms import BarberForm
 from barbers.models import Barber
 from django.contrib import messages
 
+from favorites.favorites import get_count_of_favorite_barbers, get_favorite_barbers
+
 def barber_list(request):
     barbers = Barber.objects.all()
 
@@ -15,7 +17,7 @@ def barber_list(request):
 def barber_index(request):
     barbers = Barber.objects.all()
 
-    return render(request, "barbers/index.html", {"barbers": barbers})
+    return render(request, "barbers/index.html", {"barbers": barbers, "fav_count": get_count_of_favorite_barbers(request), "fav_barbers": get_favorite_barbers(request)})
 
 def barber_detail(request, pk):
     barber = get_object_or_404(Barber, pk=pk)
