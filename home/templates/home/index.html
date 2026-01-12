@@ -4,5 +4,18 @@
   Discover the best barbers in town! Browse through our list of skilled
   professionals and find the perfect match for your grooming needs.
 </p>
+{% if bookings %}
+<h2>Current Bookings</h2>
+<ul>
+  {% for booking in bookings %}
+  <li>{{ booking.customer_name }} has an appointment with {{ booking.barber.name }} on {{ booking.appointment_date }}</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No bookings at the moment.</p>
+{% endif %}
+
+<a href="/book" class="btn btn-success mt-3">Book Service</a>
+
 <a href="/barbers/list" class="btn btn-primary mt-3">View Barbers</a>
 {% endblock %}

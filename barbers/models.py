@@ -24,3 +24,12 @@ class Barber(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.position})"
+    
+class Booking(models.Model):
+    barber = models.ForeignKey(Barber, on_delete=models.CASCADE, related_name='bookings')
+    customer_name = models.CharField(max_length=100)
+    appointment_date = models.DateTimeField()
+    contact_phone = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"Booking for {self.customer_name} with {self.barber.name} on {self.appointment_date}"
