@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'services',
     'home',
     'favorites',
-    'storages'
+    'storages',
+    'rest_framework',
+    'api',
 ]
 
 MIDDLEWARE = [

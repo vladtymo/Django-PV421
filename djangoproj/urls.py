@@ -11,6 +11,7 @@ urlpatterns = [
     path('favorites/', include('favorites.urls')),
     path('barbers/', include('barbers.urls')),
     path('login/', CustomLoginView.as_view(), name='login'),
+    path('api/', include('api.urls')),
 ]
 
 if settings.DEBUG:  # Only serve media files in development
