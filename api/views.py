@@ -32,8 +32,8 @@ class BarberDetail(APIView):
             return Barber.objects.get(pk=pk)
         except Barber.DoesNotExist:
             raise Http404
-        
-    @action(methods=['get'], detail=False)
+
+    @action(methods=['get'], detail=False) 
     def get(self, request, pk, format=None):
         barber = self.get_object(pk)
         serializer = BarberSerializer(barber)

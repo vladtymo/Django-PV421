@@ -18,4 +18,5 @@ class BarberForm(ModelForm):
             "phone": forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter phone number', "type": "tel"}),
         }
     
-     
+# class BarberSearchForm(forms.Form):
+#     text = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Search barbers...'}))

@@ -15,7 +15,12 @@ def barber_list(request):
     return render(request, "barbers/list.html", {"barbers": barbers})
 
 def barber_index(request):
-    barbers = Barber.objects.all()
+    text = request.GET.get("text", "")
+
+    if text:
+        barbers = Barber.objects.filter(name__icontains=text)
+    else:
+        barbers = Barber.objects.all()
 
     return render(request, "barbers/index.html", {"barbers": barbers, "fav_count": get_count_of_favorite_barbers(request), "fav_barbers": get_favorite_barbers(request)})
 
