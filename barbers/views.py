@@ -61,7 +61,7 @@ def barber_update(request, pk):
     return render(request, "barbers/edit.html", {"form": form})
 
 
-def barber_delete(request, pk):
+def barber_delete(request, pk): 
     barber = get_object_or_404(Barber, pk=pk)
     barber.delete()
     messages.error(request, f"Barber {barber.name} has been deleted successfully")

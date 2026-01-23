@@ -23,7 +23,7 @@ class Barber(models.Model):
     phone = models.CharField(max_length=20)
 
     def __str__(self):
-        return f"{self.name} ({self.position})"
+        return f"{self.name} ({self.get_position_display()})"
     
 class Booking(models.Model):
     barber = models.ForeignKey(Barber, on_delete=models.CASCADE, related_name='bookings')
